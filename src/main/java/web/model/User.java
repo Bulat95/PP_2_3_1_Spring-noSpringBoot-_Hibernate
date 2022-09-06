@@ -57,23 +57,20 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o instanceof User other) {
-            return other.firstName.equals(firstName)
-                    && other.lastName.equals(lastName)
-                    && other.email.equals(email);
-        }
-        return false;
-    }
-
-    @Override
     public String toString() {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o instanceof User other) {
+            return other.id.equals(id);
+        }
+        return false;
     }
 
     @Override

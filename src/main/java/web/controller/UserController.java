@@ -16,21 +16,20 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping()
-    public String printUsers(Model model) {
+    public String getUsers(Model model) {
         model.addAttribute("users", userService.getListUsers());
         return "index";
     }
 
     @GetMapping("/{id}")
-    public String getUsers(Model model, @PathVariable("id") Long id) {
+    public String getUser(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.findUserById(id));
         return "/view";
     }
 
     @GetMapping("/create")
-    public String createUserForm(Model model) {
+    public String getCreateUserForm(Model model) {
         model.addAttribute("user", new User());
         return "create";
     }
@@ -42,13 +41,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}/update")
-    public String updateUser(Model model, @PathVariable("id") Long id) {
+    public String getUpdateUserForm(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.findUserById(id));
         return "update";
     }
 
     @PatchMapping("/{id}")
-    public String editUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.updateUserById(id, user);
         return "redirect:/";
     }
